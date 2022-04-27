@@ -17,8 +17,8 @@ public class GameManager : MonoBehaviour
 {
     [SerializeField] private Text resultText;
     public bool isGameEnd;
-    private const float Stage1Time = 85;
-    public const float Stage2Time = 60;
+    private const float Stage1Time = 1;
+    public const float Stage2Time = 1;
 
     private Coroutine[] _spawnCoroutines;
     

@@ -16,7 +16,11 @@ public class ParticleObject : MonoBehaviour
     {
         print($"play {type}");
         gameObject.layer = 5;
-        particle.Play();
+        particle.Stop();
+        if (particle.isStopped)
+        {
+            particle.Play();
+        }
         Invoke(nameof(EffectEnd), 3);
     }
 
