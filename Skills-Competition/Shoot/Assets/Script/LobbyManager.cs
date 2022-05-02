@@ -10,6 +10,8 @@ public class LobbyManager : MonoBehaviour
     [SerializeField] private GameObject help;
     [SerializeField] private Text sliderValueText;
     [SerializeField] private Text sliderSfxValueText;
+    [SerializeField] private Slider bgmSlider;
+    [SerializeField] private Slider sfxSlider;
 
     private void Start()
     {
@@ -24,6 +26,13 @@ public class LobbyManager : MonoBehaviour
     public void OnHelpButton()
     {
         SoundManager.Instance.SfxPlay(SFX.ButtonClick);
+        
+        bgmSlider.value = SoundManager.Instance.BgmVolume * 100;
+        sfxSlider.value = SoundManager.Instance.SfxVolume * 100;
+        
+        sliderValueText.text = $"{bgmSlider.value:0}";
+        sliderSfxValueText.text = $"{sfxSlider.value:0}";
+        
         help.SetActive(true);
     }
     public void OnQuitButton()
@@ -39,16 +48,16 @@ public class LobbyManager : MonoBehaviour
         yield break;
     }
 
-    public void SetSoundVolume(Slider slider)
+    public void SetSoundVolume()
     {
-        SoundManager.Instance.BgmVolume = slider.value / 100;
-        sliderValueText.text = $"{slider.value:0}";
+        SoundManager.Instance.BgmVolume = bgmSlider.value / 100;
+        sliderValueText.text = $"{bgmSlider.value:0}";
     }
     
-    public void SetSFXVolume(Slider slider)
+    public void SetSFXVolume()
     {
-        SoundManager.Instance.SfxVolume = slider.value / 100;
-        sliderSfxValueText.text = $"{slider.value:0}";
+        SoundManager.Instance.SfxVolume = sfxSlider.value / 100;
+        sliderSfxValueText.text = $"{sfxSlider.value:0}";
     }
 
     public void CloseHelp(GameObject screen)
